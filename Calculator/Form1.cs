@@ -26,7 +26,8 @@ namespace Calculator
 
         public void Operators(string operators)
         {
-            txtBoxResult.Text = NumberWithCommas(num1) + operators;
+            operation = operators;
+            txtBoxResult.Text = NumberWithCommas(num1) + operation;
             isFirstNum = false;
         }
 
@@ -217,32 +218,27 @@ namespace Calculator
         //Operators
         public void btnDivided_Click(object sender, EventArgs e)
         {
-            operation = btnDivided.Text;
-            Operators(operation);
+            Operators("/");
         }
 
         private void btnRemainder_Click(object sender, EventArgs e)
         {
-            operation = btnRemainder.Text;
-            Operators(operation);
+            Operators("%");
         }
 
         public void btnMultiply_Click(object sender, EventArgs e)
         {
-            operation = btnMultiply.Text;
-            Operators(operation);
+            Operators("x");
         }
 
         public void btnSubtract_Click(object sender, EventArgs e)
         {
-            operation = btnSubtract.Text;
-            Operators(operation);
+            Operators("-");
         }
 
         public void btnAdding_Click(object sender, EventArgs e)
         {
-            operation = btnAdding.Text;
-            Operators(operation);
+            Operators("+");
         }
 
         //Equal Sign
