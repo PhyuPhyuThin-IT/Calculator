@@ -24,14 +24,12 @@ namespace Calculator
         string operation = "";
         Boolean isFirstNum = true;
 
-       
-
         public Calculator()
         {
             InitializeComponent();
         }
 
-        //Comma function
+        //Comma Button
         private string NumberWithCommas(string number)
         {
             try
@@ -46,7 +44,27 @@ namespace Calculator
             return number;
         }
 
-        //Decimal(.)
+        //Numbers Button
+        private void Numbers(string num)
+        {
+            if (isFirstNum)
+            {
+                num1 += num;
+                txtBoxResult.Text = NumberWithCommas(num1);
+            }
+            else
+            {
+                num2 += num;
+                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
+            }
+        }
+
+        public void btnNumbers_Click(object sender, EventArgs e) { 
+            string numbers = (sender as Button).Text;
+            Numbers(numbers);
+        }
+
+        //Decimal(.) Button
         private void btnPoint_Click(object sender, EventArgs e)
         {
             if (isFirstNum)
@@ -69,154 +87,20 @@ namespace Calculator
             }
         }
 
-        //Numbers
-        public void btnNo1_Click(object sender, EventArgs e)
+        //Operators Button
+        public void btnOperators_Click(object sender, EventArgs e)
         {
-            if (isFirstNum)
-            {
-                num1 += btnNo1.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo1.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        public void btnNo2_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo2.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo2.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo3_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo3.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo3.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo4.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo4.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo5_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo5.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo5.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo6_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo6.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo6.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo7_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo7.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo7.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo8_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo8.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo8.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo9_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo9.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo9.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-        private void btnNo0_Click(object sender, EventArgs e)
-        {
-            if (isFirstNum)
-            {
-                num1 += btnNo0.Text;
-                txtBoxResult.Text = NumberWithCommas(num1);
-            }
-            else
-            {
-                num2 += btnNo0.Text;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
-            }
-        }
-
-       
-        public void btnOperators_Click(object sender, EventArgs e) {
             string operators = (sender as Button).Text;
             Operators(operators);
         }
+        private void Operators(string operators)
+        {
+            operation = operators;
+            txtBoxResult.Text = NumberWithCommas(num1) + operation;
+            isFirstNum = false;
+        }
 
-        //Equal Sign
+        //Equal Button
         private void btnEqualSign_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(num1) && string.IsNullOrEmpty(num2))
@@ -298,16 +182,6 @@ namespace Calculator
             num2 = "";
             isFirstNum = true;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="operators"></param>
-        private void Operators(string operators)
-        {
-            operation = operators;
-            txtBoxResult.Text = NumberWithCommas(num1) + operation;
-            isFirstNum = false;
-        }
+        
     }
 }

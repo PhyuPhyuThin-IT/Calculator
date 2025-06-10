@@ -60,7 +60,7 @@
             this.btnNo1.TabIndex = 12;
             this.btnNo1.Text = "1";
             this.btnNo1.UseVisualStyleBackColor = false;
-            this.btnNo1.Click += new System.EventHandler(this.btnNo1_Click);
+            this.btnNo1.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo2
             // 
@@ -72,7 +72,7 @@
             this.btnNo2.TabIndex = 13;
             this.btnNo2.Text = "2";
             this.btnNo2.UseVisualStyleBackColor = false;
-            this.btnNo2.Click += new System.EventHandler(this.btnNo2_Click);
+            this.btnNo2.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo3
             // 
@@ -84,7 +84,7 @@
             this.btnNo3.TabIndex = 14;
             this.btnNo3.Text = "3";
             this.btnNo3.UseVisualStyleBackColor = false;
-            this.btnNo3.Click += new System.EventHandler(this.btnNo3_Click);
+            this.btnNo3.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo4
             // 
@@ -96,7 +96,7 @@
             this.btnNo4.TabIndex = 15;
             this.btnNo4.Text = "4";
             this.btnNo4.UseVisualStyleBackColor = false;
-            this.btnNo4.Click += new System.EventHandler(this.button4_Click);
+            this.btnNo4.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo5
             // 
@@ -108,7 +108,7 @@
             this.btnNo5.TabIndex = 16;
             this.btnNo5.Text = "5";
             this.btnNo5.UseVisualStyleBackColor = false;
-            this.btnNo5.Click += new System.EventHandler(this.btnNo5_Click);
+            this.btnNo5.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo6
             // 
@@ -120,7 +120,7 @@
             this.btnNo6.TabIndex = 17;
             this.btnNo6.Text = "6";
             this.btnNo6.UseVisualStyleBackColor = false;
-            this.btnNo6.Click += new System.EventHandler(this.btnNo6_Click);
+            this.btnNo6.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo7
             // 
@@ -132,7 +132,7 @@
             this.btnNo7.TabIndex = 18;
             this.btnNo7.Text = "7";
             this.btnNo7.UseVisualStyleBackColor = false;
-            this.btnNo7.Click += new System.EventHandler(this.btnNo7_Click);
+            this.btnNo7.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo8
             // 
@@ -144,7 +144,7 @@
             this.btnNo8.TabIndex = 19;
             this.btnNo8.Text = "8";
             this.btnNo8.UseVisualStyleBackColor = false;
-            this.btnNo8.Click += new System.EventHandler(this.btnNo8_Click);
+            this.btnNo8.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo9
             // 
@@ -156,7 +156,7 @@
             this.btnNo9.TabIndex = 20;
             this.btnNo9.Text = "9";
             this.btnNo9.UseVisualStyleBackColor = false;
-            this.btnNo9.Click += new System.EventHandler(this.btnNo9_Click);
+            this.btnNo9.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnNo0
             // 
@@ -168,7 +168,7 @@
             this.btnNo0.TabIndex = 21;
             this.btnNo0.Text = "0";
             this.btnNo0.UseVisualStyleBackColor = false;
-            this.btnNo0.Click += new System.EventHandler(this.btnNo0_Click);
+            this.btnNo0.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnDivided
             // 
@@ -266,7 +266,7 @@
             this.btnPoint.TabIndex = 29;
             this.btnPoint.Text = ".";
             this.btnPoint.UseVisualStyleBackColor = false;
-            this.btnPoint.Click += new System.EventHandler(this.btnPoint_Click);
+            this.btnPoint.Click += new System.EventHandler(this.btnNumbers_Click);
             // 
             // btnRemainder
             // 
