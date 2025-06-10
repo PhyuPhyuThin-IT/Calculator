@@ -24,12 +24,7 @@ namespace Calculator
         string operation = "";
         Boolean isFirstNum = true;
 
-        public void Operators(string operators)
-        {
-            operation = operators;
-            txtBoxResult.Text = NumberWithCommas(num1) + operation;
-            isFirstNum = false;
-        }
+       
 
         public Calculator()
         {
@@ -215,30 +210,10 @@ namespace Calculator
             }
         }
 
-        //Operators
-        public void btnDivided_Click(object sender, EventArgs e)
-        {
-            Operators("/");
-        }
-
-        private void btnRemainder_Click(object sender, EventArgs e)
-        {
-            Operators("%");
-        }
-
-        public void btnMultiply_Click(object sender, EventArgs e)
-        {
-            Operators("x");
-        }
-
-        public void btnSubtract_Click(object sender, EventArgs e)
-        {
-            Operators("-");
-        }
-
-        public void btnAdding_Click(object sender, EventArgs e)
-        {
-            Operators("+");
+       
+        public void btnOperators_Click(object sender, EventArgs e) {
+            string operators = (sender as Button).Text;
+            Operators(operators);
         }
 
         //Equal Sign
@@ -322,6 +297,17 @@ namespace Calculator
             operation = "";
             num2 = "";
             isFirstNum = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operators"></param>
+        private void Operators(string operators)
+        {
+            operation = operators;
+            txtBoxResult.Text = NumberWithCommas(num1) + operation;
+            isFirstNum = false;
         }
     }
 }
