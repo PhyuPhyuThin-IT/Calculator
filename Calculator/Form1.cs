@@ -16,13 +16,19 @@ namespace Calculator
     public partial class Calculator : Form
     {
         //Public Declaration
-        string num1 = "";
-        string num2 = "";
-        double firstNum;
-        double secondNum;
-        double result;
-        string operation = "";
-        Boolean isFirstNum = true;
+        private string num1 = "";
+        private string num2 = "";
+        private string operation = "";
+        private Boolean isFirstNum = true;
+
+        public string Num1
+        {
+            get { return num1; }
+            set
+            {
+                num1 = AddComma(value);
+            }
+        }
 
         public Calculator()
         {
@@ -30,38 +36,32 @@ namespace Calculator
         }
 
         //Comma Button
-        private string NumberWithCommas(string number)
+        private string AddComma(string number)
         {
-            try
+            if (long.TryParse(number, out long num))
             {
-                if (long.TryParse(number, out long num))
-                    return num.ToString("N0");
-            }
-            catch
-            {
-                txtBoxResult.Text += "Error";
-            }
-            return number;
-        }
-
-        //Numbers Button
-        private void Numbers(string num)
-        {
-            if (isFirstNum)
-            {
-                num1 += num;
-                txtBoxResult.Text = NumberWithCommas(num1);
+                return num.ToString("N0");
             }
             else
             {
-                num2 += num;
-                txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
+                return number;
             }
         }
 
-        public void btnNumbers_Click(object sender, EventArgs e) { 
+        //Numbers Button
+        public void btnNumbers_Click(object sender, EventArgs e)
+        {
             string numbers = (sender as Button).Text;
-            Numbers(numbers);
+            if (isFirstNum)
+            {
+                Num1 += numbers;
+                txtBoxResult.Text = Num1;
+            }
+            else
+            {
+                num2 += numbers;
+                txtBoxResult.Text = Num1 + operation + AddComma(num2);
+            }
         }
 
         //Decimal(.) Button
@@ -69,11 +69,11 @@ namespace Calculator
         {
             if (isFirstNum)
             {
-                if (!num1.Contains("."))
+                if (!Num1.Contains("."))
                 {
-                    if (string.IsNullOrEmpty(num1)) num1 = "0";
-                    num1 += ".";
-                    txtBoxResult.Text = NumberWithCommas(num1);
+                    if (string.IsNullOrEmpty(Num1)) Num1 = "0";
+                    Num1 += ".";
+                    txtBoxResult.Text = Num1;
                 }
             }
             else
@@ -82,7 +82,7 @@ namespace Calculator
                 {
                     if (string.IsNullOrEmpty(num2)) num2 = "0";
                     num2 += ".";
-                    txtBoxResult.Text = NumberWithCommas(num1) + operation + NumberWithCommas(num2);
+                    txtBoxResult.Text = Num1 + operation + AddComma(num2);
                 }
             }
         }
@@ -90,41 +90,39 @@ namespace Calculator
         //Operators Button
         public void btnOperators_Click(object sender, EventArgs e)
         {
-            string operators = (sender as Button).Text;
-            Operators(operators);
-        }
-        private void Operators(string operators)
-        {
-            operation = operators;
-            txtBoxResult.Text = NumberWithCommas(num1) + operation;
+            operation = (sender as Button).Text;
+            txtBoxResult.Text = Num1 + operation;
             isFirstNum = false;
         }
 
         //Equal Button
         private void btnEqualSign_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(num1) && string.IsNullOrEmpty(num2))
+            double result = 0;
+
+            if (string.IsNullOrEmpty(Num1) && string.IsNullOrEmpty(num2))
             {
                 txtBoxResult.Text = "Invalid input\nClick C to restart";
             }
 
-            else if (string.IsNullOrEmpty(num1))
+            else if (string.IsNullOrEmpty(Num1))
             {
                 txtBoxResult.Text = "Need Num1\nClick C to restart";
-                return;
             }
 
             else if (string.IsNullOrEmpty(operation) || string.IsNullOrEmpty(num2))
             {
-                txtBoxResult.Text = NumberWithCommas(num1);
+                txtBoxResult.Text = Num1;
             }
+
 
             else
             {
                 try
                 {
-                    firstNum = double.Parse(NumberWithCommas(num1));
-                    secondNum = double.Parse(NumberWithCommas(num2));
+                    double firstNum = double.Parse(Num1);
+                    double secondNum = double.Parse(AddComma(num2));
+
 
                     switch (operation)
                     {
@@ -137,34 +135,34 @@ namespace Calculator
                             {
                                 result = firstNum / secondNum;
                                 txtBoxResult.Text = result.ToString();
-                                txtBoxResult.Text = NumberWithCommas(txtBoxResult.Text);
+                                txtBoxResult.Text = AddComma(txtBoxResult.Text);
                             }
                             break;
                         case "%":
                             result = firstNum % secondNum;
                             txtBoxResult.Text = result.ToString();
-                            txtBoxResult.Text = NumberWithCommas(txtBoxResult.Text);
+                            txtBoxResult.Text = AddComma(txtBoxResult.Text);
                             break;
                         case "x":
                             result = firstNum * secondNum;
                             txtBoxResult.Text = result.ToString();
-                            txtBoxResult.Text = NumberWithCommas(txtBoxResult.Text);
+                            txtBoxResult.Text = AddComma(txtBoxResult.Text);
                             break;
                         case "-":
                             result = firstNum - secondNum;
                             txtBoxResult.Text = result.ToString();
-                            txtBoxResult.Text = NumberWithCommas(txtBoxResult.Text);
+                            txtBoxResult.Text = AddComma(txtBoxResult.Text);
                             break;
                         case "+":
                             result = firstNum + secondNum;
                             txtBoxResult.Text = result.ToString();
-                            txtBoxResult.Text = NumberWithCommas(txtBoxResult.Text);
+                            txtBoxResult.Text = AddComma(txtBoxResult.Text);
                             break;
                     }
-                    num1 = result.ToString();
+                    Num1 = result.ToString();
                     num2 = "";
                     operation = "";
-                    txtBoxResult.Text = NumberWithCommas(num1);
+                    txtBoxResult.Text = Num1;
                 }
                 catch (OverflowException)
                 {
@@ -177,11 +175,10 @@ namespace Calculator
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtBoxResult.Text = "";
-            num1 = "";
+            Num1 = "";
             operation = "";
             num2 = "";
             isFirstNum = true;
         }
-        
     }
 }
